@@ -56,7 +56,7 @@ module BitBucket
       _validate_presence_of sha
       normalize! params
 
-      get_request("/1.0/repositories/#{user}/#{repo.downcase}/changesets/#{sha}/stat", params)
+      get_request("/1.0/repositories/#{user}/#{repo.downcase}/changesets/#{sha}/diffstat", params)
     end
     alias :find :get
 
