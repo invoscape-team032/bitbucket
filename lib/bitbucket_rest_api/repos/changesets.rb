@@ -50,5 +50,16 @@ module BitBucket
     end
     alias :find :get
 
+    def get_stats(user_name, repo_name, sha, params={})
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+      _validate_presence_of sha
+      normalize! params
+
+      get_request("/1.0/repositories/#{user}/#{repo.downcase}/changesets/#{sha}/stat", params)
+    end
+    alias :find :get
+
+
   end # Repos::Commits
 end # BitBucket
